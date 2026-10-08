@@ -1,27 +1,30 @@
-name: React CI Pipeline
+name: React CI
 
 on:
   push:
-    branches: [main]
+    branches:
+      - master
+
   pull_request:
-    branches: [main]
+    branches:
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm ci
 
-      - name: Build React application
+      - name: Build React Application
         run: npm run build
